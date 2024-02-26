@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ask a Question</title>
+
+    <!-- Include your CSS file -->
+<!--    <link rel="stylesheet" th:href="@{/style1.css}" />-->
+</head>
+<body>
+
+<h2>Ask a Question</h2>
+<!--<div th:if="${user != null}">-->
+<div th:if="${questionDto.getUserId != null}">
+<form th:action="@{/ask}" method="post" th:object="${questionDto}">
+    <label>Title: <input type="text" th:field="*{title}" required /></label><br>
+    <label>Body: <textarea th:field="*{body}" required></textarea></label><br>
+<!--    <label>Description: <input type="text" th:field="*{description}" required /></label><br>-->
+    <label>Tags: <input type="text" th:field="*{tags}" required /></label><br>
+    <!-- Add more form fields as needed -->
+    <input type="text" th:field="*{userId}" th:value="${questionDto.getUserId }" />
+    <button type="submit">Submit Question</button>
+</form>
+</div>
+<div th:if="${questionDto.getUserId==null}">
+    user Id not available
+
+</div>
+<!-- Add your additional HTML content or scripts if needed -->
+
+</body>
+</html>
